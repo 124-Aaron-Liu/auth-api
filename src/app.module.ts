@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { GoogleOauth2Module } from './google-oauth2/google-oauth2.module';
 import { TwitterOauth2Module } from './twitter-oauth2/twitter-oauth2.module';
+import { LineOauth2Module } from './line-oauth2/line-oauth2.module';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -11,6 +13,7 @@ import { TwitterOauth2Module } from './twitter-oauth2/twitter-oauth2.module';
     }),
     GoogleOauth2Module,
     TwitterOauth2Module,
+    LineOauth2Module,
   ],
   controllers: [AppController],
   providers: [AppService],

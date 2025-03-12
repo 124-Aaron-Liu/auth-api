@@ -10,11 +10,11 @@ export class TwitterOauth2Strategy extends PassportStrategy(
 ) {
   constructor(private configService: ConfigService) {
     super({
-      authorizationURL: configService.get('authorizationURL') || '',
-      tokenURL: configService.get('tokenURL') || '',
-      clientID: configService.get('clientID') || '',
-      clientSecret: configService.get('clientSecret') || '',
-      callbackURL: configService.get('oauth2CallbackUrl') || '',
+      authorizationURL: configService.get('TWITTER_AUTHORIZATION_URL') || '',
+      tokenURL: configService.get('TWITTER_TOKEN_URL') || '',
+      clientID: configService.get('TWITTER_CLIENT_ID') || '',
+      clientSecret: configService.get('TWITTER_CLIENT_SECRET') || '',
+      callbackURL: configService.get('TWITTER_OAUTH2_CALLBACK_URL') || '',
       scope: ['tweet.read', 'tweet.write', 'users.read', 'offline.access'],
       pkce: true,
       state: 'state',
