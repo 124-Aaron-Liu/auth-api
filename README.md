@@ -97,3 +97,42 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+
+## Telegram Integration
+
+This project includes integration with Telegram for authentication purposes. Below are the steps to set up and use the Telegram module:
+
+### Setup
+
+1. **Create a Telegram Bot**:
+   - Go to [BotFather](https://t.me/botfather) on Telegram and create a new bot.
+   - Obtain the bot token provided by BotFather.
+
+2. **Configure the Bot Token**:
+   - Ensure that your environment variables include the `TELEGRAM_API_TOKEN` with the token obtained from BotFather.
+
+3. **Set the Bot Domain**:
+   - Use `/setdomain` command in BotFather to set your bot's domain. If developing locally, use a tool like ngrok to expose your local server.
+
+### Usage
+
+- The Telegram login widget can be embedded in your frontend application using the following HTML snippet:
+
+  ```html
+  <script async src="https://telegram.org/js/telegram-widget.js?7"
+          data-telegram-login="YOUR_BOT_USERNAME"
+          data-size="large"
+          data-radius="10"
+          data-auth-url="https://yourdomain.com/telegram/login"
+          data-request-access="write"
+          data-userpic="false"></script>
+  ```
+
+- Replace `YOUR_BOT_USERNAME` with your bot's username and `https://yourdomain.com/telegram/login` with your server's URL.
+
+### Testing
+
+- Ensure your NestJS server is running and accessible.
+- Open the page containing the Telegram login widget and test the login flow.
+
+For more detailed instructions, refer to the [Telegram Bot API documentation](https://core.telegram.org/bots/api).

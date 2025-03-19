@@ -1042,6 +1042,13 @@
     jsonc-parser "3.3.1"
     pluralize "8.0.0"
 
+"@nestjs/serve-static@^5.0.3":
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@nestjs/serve-static/-/serve-static-5.0.3.tgz#63d8021ce93ab91515fd7dfffaa71d734bddb3f8"
+  integrity sha512-0jFjTlSVSLrI+mot8lfm+h2laXtKzCvgsVStv9T1ZBZTDwS26gM5czIhIESmWAod0PfrbCDFiu9C1MglObL8VA==
+  dependencies:
+    path-to-regexp "8.2.0"
+
 "@nestjs/testing@^11.0.1":
   version "11.0.11"
   resolved "https://registry.yarnpkg.com/@nestjs/testing/-/testing-11.0.11.tgz#38c339de5a9fa7752563b54c3bc48ec90cc42017"
@@ -4629,10 +4636,17 @@ passport-oauth2@1.x.x, passport-oauth2@^1.5.0, passport-oauth2@^1.8.0:
     uid2 "0.0.x"
     utils-merge "1.x.x"
 
-passport-strategy@1.x.x:
+passport-strategy@1.x.x, passport-strategy@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/passport-strategy/-/passport-strategy-1.0.0.tgz#b5539aa8fc225a3d1ad179476ddf236b440f52e4"
   integrity sha512-CB97UUvDKJde2V0KDWWB3lyf6PC3FaZP7YxZ2G8OAtn9p4HI9j9JLP9qjOGZFvyl8uwNT8qM+hGnz/n16NI7oA==
+
+passport-telegram-official@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/passport-telegram-official/-/passport-telegram-official-2.0.1.tgz#c54bd5c82aab904c2e4466a280806c19da94366e"
+  integrity sha512-h7ugNskZjkouF4HuOeYs25bmAg/Ct7jcOTaB1lZgWPXAX8SL9NRp11+h1b0udpKodYRgnFfR5tS6IummI0qVLQ==
+  dependencies:
+    passport-strategy "^1.0.0"
 
 passport@^0.7.0:
   version "0.7.0"
