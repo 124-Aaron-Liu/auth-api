@@ -1,7 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Req, Res } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy } from 'passport-line-auth';
 import { ConfigService } from '@nestjs/config';
+import axios from 'axios';
+import { Request, Response } from 'express';
 
 @Injectable()
 export class LineStrategy extends PassportStrategy(Strategy, 'line') {
@@ -36,5 +38,41 @@ export class LineStrategy extends PassportStrategy(Strategy, 'line') {
     // 這裡可以添加自己的邏輯，例如在資料庫中查找或創建用戶
 
     done(null, user);
+  }
+
+  async lineAuthCallback(@Req() req: Request, @Res() res: Response) {
+    const { code, state } = req.query;
+
+    // 驗證 state
+
+    const tokenUrl = 'https://api.line.me/oauth2/v2.1/token';
+    const clientId = this.configService.get<string>('LINE_CHANNEL_ID');
+    const clientSecret = this.configService.get<string>('LINE_CHANNEL_SECRET');
+    const redirectUri = this.configService.get<string>('LINE_CALLBACK_URL');
+
+    try {
+      const response = await axios.post(tokenUrl, null, {
+        params: {
+          grant_type: 'authorization_code',
+          code,
+          redirect_uri: redirectUri,
+          client_id: clientId,
+          client_secret: clientSecret,
+        },
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      });
+
+      const { access_token, refresh_token } = response.data;
+
+      // 使用 accessToken 獲取受限資源
+      // ...
+
+      res.json({ access_token, refresh_token });
+    } catch (error) {
+      console.error('Error exchanging code for token:', error);
+      res.status(500).send('Error exchanging code for token');
+    }
   }
 }
