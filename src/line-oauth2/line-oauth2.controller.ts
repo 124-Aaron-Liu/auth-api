@@ -1,6 +1,7 @@
-import { Controller, Get, Req, Res } from '@nestjs/common';
+import { Controller, Get, Req, Res, UseGuards } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Request, Response } from 'express';
+import { LineTokenGuard } from './line-auth.guard';
 
 @Controller('line-oauth2')
 export class LineOauth2Controller {
@@ -68,5 +69,17 @@ export class LineOauth2Controller {
       console.error('Error fetching token:', error);
       res.status(500).send('Error fetching token');
     }
+  }
+
+  @Get('token2')
+  @UseGuards(LineTokenGuard)
+  async getToken2(@Req() req: any) {
+    // Guard 成功後，token 資訊會在 req.user 中
+    console.log('req.user', req.user);
+    
+    return {
+      success: true,
+      data: req.user,
+    };
   }
 }
